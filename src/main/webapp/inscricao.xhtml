@@ -91,7 +91,9 @@
                 <ice:panelGroup>
                     <ice:outputLabel for="email" value="E-mail"/>
                     <ice:inputText id="email" value="#{inscricaoBean.candidato.email}" size="80"
-                          styleClass="ui-inputfield" label="E-mail" maxlength="200" required="true"/>
+                          styleClass="ui-inputfield" label="E-mail" maxlength="200" required="true">
+                       <f:validator validatorId="EmailValidator"/>
+                    </ice:inputText>   
                 </ice:panelGroup>
                 <ice:panelGroup>
                     <ice:outputLabel for="instituicao" value="Instituição"/>
