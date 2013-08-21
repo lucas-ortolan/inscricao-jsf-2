@@ -106,7 +106,7 @@ public class InscricaoBean extends PageBean {
         email = false;
     }
     
-    public void inscricaoAction() {
+    public String inscricaoAction() {
         JpaController ctl = new JpaController();
         EntityManager em = ctl.getEntityManager();
         try {
@@ -124,6 +124,7 @@ public class InscricaoBean extends PageBean {
             error("Não foi possível completar a operação");
         } finally {
             em.close();
+            return "listar";
         }
     }
 }
