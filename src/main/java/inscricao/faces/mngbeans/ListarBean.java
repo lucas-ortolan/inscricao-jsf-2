@@ -18,7 +18,7 @@ public class ListarBean extends PageBean {
     private ListDataModel<Candidato> candidatosDataModel;
     private List<Idioma> idiomas;
     //private Idioma idioma = new Idioma();
-    private String idioma = "Inglês";
+    private int idioma = 1;
 
     public ListarBean() {
         candidatosDataModel = new ListDataModel<>(getListaCandidatos());        
@@ -28,11 +28,11 @@ public class ListarBean extends PageBean {
        return candidatosDataModel;
    } 
 
-    public String getIdioma() {
+    public int getIdioma() {
         return idioma;
     }
 
-    public void setIdioma(String idioma) {
+    public void setIdioma(int idioma) {
         this.idioma = idioma;
     }    
 
@@ -40,8 +40,8 @@ public class ListarBean extends PageBean {
         List<Candidato> candidatos;
         try {
             CandidatoJpaController ctl = new CandidatoJpaController();
-//            candidatos = ctl.findCandidatoFilter(idioma);
-            candidatos = ctl.findCandidato();
+            candidatos = ctl.findCandidatoFilter(idioma);
+//            candidatos = ctl.findCandidato();
         } catch (Exception e) {
             candidatos = new ArrayList<>(0);
             log("Lista de candidatos", e);
