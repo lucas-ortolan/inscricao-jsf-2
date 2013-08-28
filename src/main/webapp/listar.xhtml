@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:ice="http://www.icesoft.com/icefaces/component"
                 xmlns:ace="http://www.icefaces.org/icefaces/components"
                 template="./WEB-INF/templates/layout.xhtml">
@@ -33,12 +33,12 @@
     </ui:define>
 
     <ui:define name="content">
-        <h:form>
-            <div class="titulo-form">LISTAR INSCRITOS</div>
-            <h:panelGroup style="text-align: left; margin-bottom: 10px;" layout="block">
+        <ice:form>
+            <div class="titulo-form">FICHA DE INSCRIÇÃO</div>
+            <ice:panelGroup style="text-align: left; margin-bottom: 10px;">
                 <ice:outputLabel for="idioma" value="Idioma"/>
-                <ice:selectOneMenu id="idioma" value="#{listarBean.idioma.codigo}" style="width:12em" styleClass="ui-selectonemenu">
-                    <f:selectItems value="#{listarBean.idiomas}" var="i" itemValue="#{i.codigo}" itemLabel="#{i.descricao}"/>
+                <ice:selectOneMenu id="idioma" value="#{listarBean.idioma}" style="width:12em" styleClass="ui-selectonemenu" partialSubmit="true">
+                    <f:selectItems value="#{listarBean.idiomas}" var="i" itemValue="#{i.descricao}" itemLabel="#{i.descricao}"/>
                 </ice:selectOneMenu>
                 <h:dataTable value="#{listarBean.candidatosDataModel}" var="candidato">
                     <h:column>
@@ -72,10 +72,9 @@
                         <h:outputText value="#{candidato.estado}"/>
                     </h:column>
                 </h:dataTable> 
-            </h:panelGroup>
-            <h:commandButton value="Inscricao" action="inscricao"/>
-            <h:messages/>
-        </h:form>
+            </ice:panelGroup>
+            <ice:messages/>
+        </ice:form>
     </ui:define>
 
 </ui:composition>
