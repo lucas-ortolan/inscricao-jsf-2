@@ -5,7 +5,8 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:ice="http://www.icesoft.com/icefaces/component"
                 xmlns:ace="http://www.icefaces.org/icefaces/components"
-                template="./WEB-INF/templates/layout.xhtml">
+                template="./WEB-INF/templates/layout.xhtml"
+                xmlns:comps="http://java.sun.com/jsf/composite/util">
 
     <ui:define name="styles">
         <style type="text/css">
@@ -41,9 +42,10 @@
                     <f:selectItems value="#{inscricaoBean.idiomas}" var="i" itemValue="#{i.codigo}" itemLabel="#{i.descricao}"/>
                 </ice:selectOneMenu>
                 <ice:panelGroup>
+                    <comps:entradaCPF value="#{inscricaoBean.candidato.cpf}" tipoMascara="completo"/>
                     <ice:outputLabel for="cpf" value="CPF"/>
                     <ace:maskedEntry id="cpf" value="#{inscricaoBean.candidato.cpf}"  mask="999999999-99"
-                                     label="CPF" size="15" required="true">
+                            label="CPF" size="15" required="true">
                         <f:validator validatorId="CPFValidator"/>
                         <f:converter converterId="CPFConverter"/>
                     </ace:maskedEntry>

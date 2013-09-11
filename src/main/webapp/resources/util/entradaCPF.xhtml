@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:cc="http://java.sun.com/jsf/composite">
+
+    <cc:interface>
+        <cc:attribute name="label" default="CPF:"/>
+        <cc:attribute name="value" required="true"/>
+        <cc:attribute name="required" default="true"/>
+        <cc:attribute name="tipoMascara" default="padrao"/>
+    </cc:interface>
+
+    <cc:implementation xmlns="http://www.w3.org/1999/xhtml"
+                       xmlns:f="http://java.sun.com/jsf/core"
+                       xmlns:ice="http://www.icesoft.com/icefaces/component"
+                       xmlns:ace="http://www.icefaces.org/icefaces/components"
+                       xmlns:cc="http://java.sun.com/jsf/composite">
+        <ice:outputLabel for="entradaCPF" value="#{cc.attrs.label}"/>
+        
+        <ace:maskedEntry id="entradaCPFPadrao" value="#{cc.attrs.value}" rendered="#{cc.attrs.tipoMascara == 'padrao'}" mask="99999999999" required="#{cc.attrs.required}">
+            <f:validator validatorId="CPFValidator"/>
+        </ace:maskedEntry>
+        
+        <ace:maskedEntry id="entradaCPFSimples" value="#{cc.attrs.value}" rendered="#{cc.attrs.tipoMascara == 'simples'}" mask="999999999-99" required="#{cc.attrs.required}">
+            <f:validator validatorId="CPFValidator"/>
+        </ace:maskedEntry>
+
+        <ace:maskedEntry id="entradaCPFCompleto" value="#{cc.attrs.value}" rendered="#{cc.attrs.tipoMascara == 'completo'}" mask="999.999.999-99" required="#{cc.attrs.required}">
+            <f:validator validatorId="CPFValidator"/>
+        </ace:maskedEntry>
+        
+    </cc:implementation>
+</html>
